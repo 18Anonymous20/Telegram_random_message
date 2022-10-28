@@ -1,0 +1,26 @@
+import logging
+import random
+
+import aiogram
+from aiogram import Bot, Dispatcher
+from aiogram import types
+from aiogram import executor
+from aiogram.contrib.fsm_storage.memory import MemoryStorage
+from aiogram.dispatcher.filters import Text
+from aiogram.dispatcher import FSMContext
+
+TOKEN = "5479889331:AAGdVVrmizr4O74e7OzDCKda3Y26Ad6dP6c"
+
+bot = Bot(token=TOKEN, parse_mode=types.ParseMode.HTML)
+memory_storage = MemoryStorage()
+dp = Dispatcher(bot, storage=memory_storage)
+logging.basicConfig(level=logging.DEBUG)
+
+
+# Функция ниже читает все, что пишут в группе (если бота сделать админом)
+# или только то, что пишут боту и ждет, когда кто-то напишет sergey
+@dp.message_handler(content_types=['text'])
+async def text_handler(message):
+    info = ['Хех', 'Редкое сообщение! Кто увидел тот лох!', 'Случайная фраза', 'Привет! Я бот!', 'Шекспир написал Ромео и Джульетта', 'Водка пиво водка пиво под конец корпаратива', 'Здравствуй юность в сапогах!', 'корень из 121 равен 11']
+    await message.answer(random.choice(info))  # отвечаем на сообщение текстом
+executor.start_polling(dp, skip_updates=True)
