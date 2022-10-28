@@ -16,9 +16,6 @@ memory_storage = MemoryStorage()
 dp = Dispatcher(bot, storage=memory_storage)
 logging.basicConfig(level=logging.DEBUG)
 
-
-# Функция ниже читает все, что пишут в группе (если бота сделать админом)
-# или только то, что пишут боту и ждет, когда кто-то напишет sergey
 @dp.message_handler(content_types=['text'])
 async def text_handler(message):
     info = ['Хех', 'Редкое сообщение! Кто увидел тот лох!', 'Случайная фраза', 'Привет! Я бот!', 'Шекспир написал Ромео и Джульетта', 'Водка пиво водка пиво под конец корпаратива', 'Здравствуй юность в сапогах!', 'корень из 121 равен 11']
